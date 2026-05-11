@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pytest
+.pytest_cache/
+.cache/
+
+# Output (keep .gitkeep but ignore generated files)
+fragment-weaver/output/*.json
+fragment-weaver/output/*.md
