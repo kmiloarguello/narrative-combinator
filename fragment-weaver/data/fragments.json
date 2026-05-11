@@ -1,0 +1,58 @@
+{
+  "fragments": [
+    {
+      "id": "O01",
+      "layer": "opening",
+      "text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed.",
+      "tags": ["morning", "light", "stillness", "threshold"]
+    },
+    {
+      "id": "O02",
+      "layer": "opening",
+      "text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead.",
+      "tags": ["bridge", "river", "silence", "departure"]
+    },
+    {
+      "id": "O03",
+      "layer": "opening",
+      "text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to.",
+      "tags": ["letter", "return", "anticipation", "interior"]
+    },
+    {
+      "id": "M01",
+      "layer": "middle",
+      "text": "The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning.",
+      "tags": ["time", "thought", "repetition", "interior"]
+    },
+    {
+      "id": "M02",
+      "layer": "middle",
+      "text": "A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little.",
+      "tags": ["stranger", "arrival", "silence", "gravity"]
+    },
+    {
+      "id": "M03",
+      "layer": "middle",
+      "text": "Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known.",
+      "tags": ["revelation", "patience", "hidden", "quiet"]
+    },
+    {
+      "id": "E01",
+      "layer": "ending",
+      "text": "In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "tags": ["unresolved", "change", "home", "ambiguity"]
+    },
+    {
+      "id": "E02",
+      "layer": "ending",
+      "text": "She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "tags": ["departure", "release", "restraint", "quiet"]
+    },
+    {
+      "id": "E03",
+      "layer": "ending",
+      "text": "What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "tags": ["uncertainty", "acceptance", "quiet", "rest"]
+    }
+  ]
+}
