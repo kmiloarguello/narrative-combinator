@@ -9,7 +9,6 @@ Fragment Weaver generates stories by combining **one fragment from each of three
 ## Project structure
 
 ```
-fragment-weaver/
 ├── README.md
 ├── main.py                # CLI entry point
 ├── data/
@@ -36,8 +35,6 @@ fragment-weaver/
 ## Quick start
 
 ```bash
-cd fragment-weaver
-
 # List all 27 story combinations
 python main.py generate
 

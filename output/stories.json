@@ -1,0 +1,289 @@
+{
+  "stories": [
+    {
+      "id": "S001",
+      "opening_id": "O01",
+      "middle_id": "M01",
+      "ending_id": "E01",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 85,
+      "issues": [
+        "Repeated keyword: 'nothing'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S002",
+      "opening_id": "O01",
+      "middle_id": "M01",
+      "ending_id": "E02",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 85,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S003",
+      "opening_id": "O01",
+      "middle_id": "M01",
+      "ending_id": "E03",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 90,
+      "issues": [
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S004",
+      "opening_id": "O01",
+      "middle_id": "M02",
+      "ending_id": "E01",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 85,
+      "issues": [
+        "Repeated keyword: 'nothing'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S005",
+      "opening_id": "O01",
+      "middle_id": "M02",
+      "ending_id": "E02",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 85,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S006",
+      "opening_id": "O01",
+      "middle_id": "M02",
+      "ending_id": "E03",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 90,
+      "issues": [
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S007",
+      "opening_id": "O01",
+      "middle_id": "M03",
+      "ending_id": "E01",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 80,
+      "issues": [
+        "Repeated keyword: 'nothing'",
+        "Repeated keyword: 'something'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S008",
+      "opening_id": "O01",
+      "middle_id": "M03",
+      "ending_id": "E02",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 80,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Repeated keyword: 'years'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S009",
+      "opening_id": "O01",
+      "middle_id": "M03",
+      "ending_id": "E03",
+      "full_text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 85,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Tonally incompatible keywords: 'morning' and 'night'"
+      ]
+    },
+    {
+      "id": "S010",
+      "opening_id": "O02",
+      "middle_id": "M01",
+      "ending_id": "E01",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'felt'"
+      ]
+    },
+    {
+      "id": "S011",
+      "opening_id": "O02",
+      "middle_id": "M01",
+      "ending_id": "E02",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 100
+    },
+    {
+      "id": "S012",
+      "opening_id": "O02",
+      "middle_id": "M01",
+      "ending_id": "E03",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 100
+    },
+    {
+      "id": "S013",
+      "opening_id": "O02",
+      "middle_id": "M02",
+      "ending_id": "E01",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'felt'"
+      ]
+    },
+    {
+      "id": "S014",
+      "opening_id": "O02",
+      "middle_id": "M02",
+      "ending_id": "E02",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 100
+    },
+    {
+      "id": "S015",
+      "opening_id": "O02",
+      "middle_id": "M02",
+      "ending_id": "E03",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 100
+    },
+    {
+      "id": "S016",
+      "opening_id": "O02",
+      "middle_id": "M03",
+      "ending_id": "E01",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'felt'"
+      ]
+    },
+    {
+      "id": "S017",
+      "opening_id": "O02",
+      "middle_id": "M03",
+      "ending_id": "E02",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 90,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Repeated keyword: 'years'"
+      ]
+    },
+    {
+      "id": "S018",
+      "opening_id": "O02",
+      "middle_id": "M03",
+      "ending_id": "E03",
+      "full_text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 100
+    },
+    {
+      "id": "S019",
+      "opening_id": "O03",
+      "middle_id": "M01",
+      "ending_id": "E01",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 90,
+      "issues": [
+        "Repeated keyword: 'still'",
+        "Repeated keyword: 'room'"
+      ]
+    },
+    {
+      "id": "S020",
+      "opening_id": "O03",
+      "middle_id": "M01",
+      "ending_id": "E02",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'still'"
+      ]
+    },
+    {
+      "id": "S021",
+      "opening_id": "O03",
+      "middle_id": "M01",
+      "ending_id": "E03",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'still'"
+      ]
+    },
+    {
+      "id": "S022",
+      "opening_id": "O03",
+      "middle_id": "M02",
+      "ending_id": "E01",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'room'"
+      ]
+    },
+    {
+      "id": "S023",
+      "opening_id": "O03",
+      "middle_id": "M02",
+      "ending_id": "E02",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 100
+    },
+    {
+      "id": "S024",
+      "opening_id": "O03",
+      "middle_id": "M02",
+      "ending_id": "E03",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 100
+    },
+    {
+      "id": "S025",
+      "opening_id": "O03",
+      "middle_id": "M03",
+      "ending_id": "E01",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "score": 95,
+      "issues": [
+        "Repeated keyword: 'room'"
+      ]
+    },
+    {
+      "id": "S026",
+      "opening_id": "O03",
+      "middle_id": "M03",
+      "ending_id": "E02",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "score": 90,
+      "issues": [
+        "Repeated keyword: 'something'",
+        "Repeated keyword: 'years'"
+      ]
+    },
+    {
+      "id": "S027",
+      "opening_id": "O03",
+      "middle_id": "M03",
+      "ending_id": "E03",
+      "full_text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to. Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known. What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "score": 100
+    }
+  ]
+}
