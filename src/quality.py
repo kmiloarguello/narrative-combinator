@@ -29,3 +29,9 @@ def fragment_score_stats(stories: list[Story], items: list[StoryQuality]) -> dic
         for fragment_id in (story.opening_id, story.middle_id, story.ending_id):
             groups.setdefault(fragment_id, []).append(scores[story.id])
     return {fragment_id: {"average_score": round(sum(values) / len(values), 1), "story_count": len(values)} for fragment_id, values in groups.items()}
+
+def compare_language_scores(by_language: dict[str, list[StoryQuality]]) -> list[dict[str, object]]:
+    """Align scores for the same story ID across language editions."""
+    ids = sorted({item.story_id for items in by_language.values() for item in items})
+    scores = {language: {item.story_id: item.score for item in items} for language, items in by_language.items()}
+    return [{"story_id": story_id, **{language: scores[language].get(story_id) for language in by_language}} for story_id in ids]

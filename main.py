@@ -26,7 +26,7 @@ from src.fragments import LAYERS, all_fragments_flat, load_fragments
 from src.generator import generate_all_stories, generate_random_story
 from src.markov import generate_text, train_on_layer
 from src.dashboard import export_dashboard
-from src.quality import analyze_story, fragment_score_stats
+from src.quality import analyze_story, compare_language_scores, fragment_score_stats
 
 DATA_PATH = Path(__file__).parent / "data" / "fragments.json"
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -120,6 +120,16 @@ def cmd_dashboard(args: argparse.Namespace) -> None:
     export_dashboard([analyze_story(story, flat, args.language) for story in stories], args.language, path)
     print(f"Exported quality dashboard → {path}")
 
+def cmd_compare(args: argparse.Namespace) -> None:  # noqa: ARG001
+    """Print comparable scores for all supported languages."""
+    by_language = {}
+    for language in ("en", "fr", "es"):
+        fragments = load_fragments(DATA_PATH, language)
+        flat = all_fragments_flat(fragments)
+        stories = generate_all_stories(fragments, language)
+        by_language[language] = [analyze_story(story, flat, language) for story in stories]
+    print(json.dumps(compare_language_scores(by_language), indent=2, ensure_ascii=False))
+
 
 def cmd_fragment_stats(args: argparse.Namespace) -> None:
     """Print average quality scores grouped by source fragment."""
@@ -155,6 +165,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("export", "Write all scored stories to JSON and Markdown"),
         ("dashboard", "Write an HTML quality dashboard"),
         ("fragment-stats", "Show average score by source fragment"),
+        ("compare", "Compare scores across languages"),
     ):
         add_language_option(sub.add_parser(name, help=help_text))
 
@@ -196,6 +207,7 @@ def main() -> None:
         "export": cmd_export,
         "dashboard": cmd_dashboard,
         "fragment-stats": cmd_fragment_stats,
+        "compare": cmd_compare,
     }
     dispatch[args.command](args)
 
