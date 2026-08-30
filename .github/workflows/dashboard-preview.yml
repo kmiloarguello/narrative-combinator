@@ -1,0 +1,53 @@
+name: Dashboard preview
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  preview:
+    # Forked PRs do not receive a write-capable token.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - run: python main.py dashboard --language en
+      - name: Capture dashboard
+        run: |
+          python -m http.server 8000 --directory output &
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              page = browser.new_page(viewport={"width": 1440, "height": 1800})
+              page.goto("http://127.0.0.1:8000/quality-dashboard.en.html", wait_until="networkidle")
+              page.screenshot(path="dashboard-pr-${{ github.event.pull_request.number }}.png", full_page=True)
+              browser.close()
+          PY
+      - name: Publish preview image
+        run: |
+          git fetch origin dashboard-previews || true
+          git worktree add preview dashboard-previews || git worktree add -b dashboard-previews preview
+          cp dashboard-pr-${{ github.event.pull_request.number }}.png preview/
+          cd preview
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add dashboard-pr-${{ github.event.pull_request.number }}.png
+          git commit -m "Update dashboard preview for PR #${{ github.event.pull_request.number }}" || true
+          git push origin dashboard-previews
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: dashboard-preview
+          message: |
+            ## Dashboard preview
+
+            ![Generated dashboard](https://raw.githubusercontent.com/${{ github.repository }}/dashboard-previews/dashboard-pr-${{ github.event.pull_request.number }}.png)
