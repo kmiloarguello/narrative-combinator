@@ -69,6 +69,7 @@ class CoherenceResult:
 
     score: int
     issues: list[str] = field(default_factory=list)
+    penalties: dict[str, int] = field(default_factory=dict)
 
 
 # ---------------------------------------------------------------------------
@@ -158,16 +159,21 @@ def score_story(
     texts = [opening.text, middle.text, ending.text]
     issues: list[str] = []
     score = 100
+    penalties: dict[str, int] = {}
 
     get_language_rules(language)
     repeated = _detect_repeated_keywords(texts, threshold=2, language=language)
     for word in repeated:
         issues.append(f"Repeated keyword: '{word}'")
         score -= _DEDUCT_REPEATED_KEYWORD
+    if repeated:
+        penalties["Repeated keywords"] = len(repeated) * _DEDUCT_REPEATED_KEYWORD
 
     tense_issues = _detect_tense_mismatch(texts, language=language)
     issues.extend(tense_issues)
     score -= len(tense_issues) * _DEDUCT_TENSE_MISMATCH
+    if tense_issues:
+        penalties["Potential tense mismatch"] = len(tense_issues) * _DEDUCT_TENSE_MISMATCH
 
     incompat_issues = _detect_incompatible_keywords(texts)
     issues.extend(incompat_issues)
@@ -178,4 +184,4 @@ def score_story(
     score -= len(length_issues) * _DEDUCT_LENGTH_IMBALANCE
 
     score = max(0, min(100, score))
-    return CoherenceResult(score=score, issues=issues)
+    return CoherenceResult(score=score, issues=issues, penalties=penalties)
