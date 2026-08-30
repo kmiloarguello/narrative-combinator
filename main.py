@@ -28,6 +28,7 @@ from src.markov import generate_text, train_on_layer
 from src.dashboard import export_dashboard
 from src.quality import analyze_story, compare_language_scores, fragment_score_stats
 from src.coverage import coverage_report
+from src.reviews import load_reviews
 
 DATA_PATH = Path(__file__).parent / "data" / "fragments.json"
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -118,7 +119,9 @@ def cmd_dashboard(args: argparse.Namespace) -> None:
     flat = all_fragments_flat(fragments)
     stories = generate_all_stories(fragments, args.language)
     path = OUTPUT_DIR / f"quality-dashboard.{args.language}.html"
-    export_dashboard([analyze_story(story, flat, args.language) for story in stories], args.language, path)
+    qualities = [analyze_story(story, flat, args.language) for story in stories]
+    reviews = load_reviews(Path(__file__).parent / "data" / "reviews.json")
+    export_dashboard(qualities, args.language, path, reviews, fragment_score_stats(stories, qualities))
     print(f"Exported quality dashboard → {path}")
 
 def cmd_compare(args: argparse.Namespace) -> None:  # noqa: ARG001

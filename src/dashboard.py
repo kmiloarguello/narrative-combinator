@@ -6,6 +6,7 @@ from html import escape
 from pathlib import Path
 
 from .quality import StoryQuality, summarize
+from .reviews import EditorialReview
 
 
 def dashboard_payload(items: list[StoryQuality], language: str) -> dict[str, object]:
@@ -58,9 +59,13 @@ def render_keyword_chart(items: list[StoryQuality]) -> str:
     return "".join(f"<div class='bar'><label>{escape(word)}</label><i style='width:{count * 20}px'></i><b>{count}</b></div>" for word, count in counts.most_common(12)) or "<p>No meaningful repeated keywords.</p>"
 
 
-def export_dashboard(items: list[StoryQuality], language: str, path: Path) -> None:
+def export_dashboard(items: list[StoryQuality], language: str, path: Path, reviews: dict[str, EditorialReview] | None = None, fragment_stats: dict[str, dict[str, float]] | None = None) -> None:
     payload = dashboard_payload(items, language)
     summary = render_summary_cards(payload["summary"])  # type: ignore[arg-type]
     html = f"""<!doctype html><html lang='{escape(language)}'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Story quality dashboard</title><style>:root{{color-scheme:light}}body{{font:16px system-ui;margin:0;background:#f7f5f0;color:#17202a}}main{{max-width:1200px;margin:auto;padding:32px}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}}article,section{{background:#fff;border-radius:10px;padding:18px;margin:16px 0}}strong{{display:block;font-size:28px}}small{{color:#587}}.bar{{display:flex;gap:8px;align-items:center;margin:6px 0}}label{{width:70px}}i{{height:15px;background:#357266;border-radius:3px}}.out-target{{background:#e9a23b}}table{{width:100%;border-collapse:collapse}}th,td{{padding:8px;border-bottom:1px solid #ddd;text-align:left}}.good{{background:#cce8d5}}.warn{{background:#ffe7a3}}.poor{{background:#f7b7ad}}@media(max-width:700px){{main{{padding:16px}}table{{font-size:12px}}}}</style><main><header><h1>Story quality dashboard</h1><p>Language: <b>{escape(language)}</b>. Automated signals prioritize editorial review; they do not replace it.</p></header><div class='cards'>{summary}</div><section><h2>Combination heatmap</h2><p>Rows are openings; columns pair each middle and ending. Green: 90+, amber: 80–89, red: below 80.</p>{render_heatmap(items)}</section><section><h2>Score distribution</h2>{render_histogram(items)}</section><section><h2>Page-length distribution</h2><p>Green is within the 70–90 word target; amber needs layout review.</p>{render_length_distribution(items)}</section><section><h2>Coherence score by story</h2>{render_score_bars(items)}</section><section><h2>Repeated keyword frequency</h2>{render_keyword_chart(items)}</section><section><h2>Review queue</h2>{render_review_table(items)}</section></main></html>"""
+    stat_rows = "".join(f"<tr><td>{fragment}</td><td>{values['average_score']}</td><td>{values['story_count']}</td></tr>" for fragment, values in sorted((fragment_stats or {}).items())) or "<tr><td colspan='3'>No statistics available.</td></tr>"
+    review_rows = "".join(f"<tr><td>{escape(story_id)}</td><td>{escape(review.status)}</td><td>{escape(review.reviewer)}</td><td>{escape(review.reviewed_on)}</td><td>{escape(review.note)}</td></tr>" for story_id, review in (reviews or {}).items()) or "<tr><td colspan='5'>No human reviews recorded yet.</td></tr>"
+    insights = f"<section><h2>Fragment statistics</h2><table><tr><th>Fragment</th><th>Average score</th><th>Stories</th></tr>{stat_rows}</table></section><section><h2>Editorial decisions</h2><table><tr><th>Story</th><th>Status</th><th>Reviewer</th><th>Date</th><th>Note</th></tr>{review_rows}</table></section>"
+    html = html.replace("<section><h2>Review queue</h2>", insights + "<section><h2>Review queue</h2>")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(html, encoding="utf-8")
