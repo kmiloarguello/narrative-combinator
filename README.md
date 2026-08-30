@@ -106,6 +106,14 @@ python main.py compare
 
 The command prints JSON rows keyed by story ID, making score differences easy to inspect during translation review.
 
+## Translation and review coverage
+
+```bash
+python main.py coverage
+```
+
+This reports translation completeness for each language, the number of reviewed and approved stories, and the percentage ready for print.
+
 `markov` options:
 
 | Flag          | Default      | Description                      |

@@ -27,6 +27,7 @@ from src.generator import generate_all_stories, generate_random_story
 from src.markov import generate_text, train_on_layer
 from src.dashboard import export_dashboard
 from src.quality import analyze_story, compare_language_scores, fragment_score_stats
+from src.coverage import coverage_report
 
 DATA_PATH = Path(__file__).parent / "data" / "fragments.json"
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -130,6 +131,9 @@ def cmd_compare(args: argparse.Namespace) -> None:  # noqa: ARG001
         by_language[language] = [analyze_story(story, flat, language) for story in stories]
     print(json.dumps(compare_language_scores(by_language), indent=2, ensure_ascii=False))
 
+def cmd_coverage(args: argparse.Namespace) -> None:  # noqa: ARG001
+    print(json.dumps(coverage_report(DATA_PATH, Path(__file__).parent / "data" / "reviews.json"), indent=2))
+
 
 def cmd_fragment_stats(args: argparse.Namespace) -> None:
     """Print average quality scores grouped by source fragment."""
@@ -166,6 +170,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("dashboard", "Write an HTML quality dashboard"),
         ("fragment-stats", "Show average score by source fragment"),
         ("compare", "Compare scores across languages"),
+        ("coverage", "Report translation and editorial coverage"),
     ):
         add_language_option(sub.add_parser(name, help=help_text))
 
@@ -208,6 +213,7 @@ def main() -> None:
         "dashboard": cmd_dashboard,
         "fragment-stats": cmd_fragment_stats,
         "compare": cmd_compare,
+        "coverage": cmd_coverage,
     }
     dispatch[args.command](args)
 
