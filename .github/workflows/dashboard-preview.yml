@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install playwright
+      - run: pip install playwright pillow
       - run: python -m playwright install --with-deps chromium
       - run: python main.py dashboard --language en
       - name: Capture dashboard
@@ -30,9 +30,20 @@ jobs:
               browser = p.chromium.launch()
               page = browser.new_page(viewport={"width": 1440, "height": 1800})
               page.goto("http://127.0.0.1:8000/quality-dashboard.en.html", wait_until="networkidle")
-              page.screenshot(path="dashboard-pr-${{ github.event.pull_request.number }}.png", full_page=True)
+              assert page.locator("h1").inner_text() == "Story quality dashboard"
+              for heading in ("Combination heatmap", "Review queue"):
+                  assert page.get_by_role("heading", name=heading).is_visible()
+              screenshot = "dashboard-pr-${{ github.event.pull_request.number }}.png"
+              page.screenshot(path=screenshot, full_page=True)
+              from PIL import Image
+              width, height = Image.open(screenshot).size
+              assert width >= 1200 and height >= 1000, (width, height)
               browser.close()
           PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-preview-pr-${{ github.event.pull_request.number }}
+          path: dashboard-pr-${{ github.event.pull_request.number }}.png
       - name: Publish preview image
         run: |
           git fetch origin dashboard-previews || true
