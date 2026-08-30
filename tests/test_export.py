@@ -39,6 +39,7 @@ def test_story_to_dict_basic_fields() -> None:
     assert d["middle_id"] == "M01"
     assert d["ending_id"] == "E01"
     assert "full_text" in d
+    assert d["language"] == "en"
 
 
 def test_story_to_dict_no_score_when_none() -> None:

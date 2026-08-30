@@ -73,6 +73,13 @@ def test_detect_tense_mismatch_none() -> None:
     assert issues == []
 
 
+def test_detect_tense_mismatch_in_french() -> None:
+    issues = _detect_tense_mismatch(
+        ["Hier elle était au pont.", "Demain elle sera ici."], language="fr"
+    )
+    assert len(issues) == 1
+
+
 # ---------------------------------------------------------------------------
 # _detect_incompatible_keywords
 # ---------------------------------------------------------------------------

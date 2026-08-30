@@ -34,6 +34,16 @@ SAMPLE_DATA = {
     ]
 }
 
+MULTILINGUAL_SAMPLE_DATA = {
+    "fragments": [
+        {
+            "id": "O01",
+            "layer": "opening",
+            "text": {"en": "English opening.", "fr": "Ouverture française.", "es": "Inicio español."},
+        }
+    ]
+}
+
 
 @pytest.fixture()
 def fragments_file(tmp_path: Path) -> Path:
@@ -90,3 +100,20 @@ def test_story_dataclass_defaults() -> None:
     s = Story(id="S001", opening_id="O01", middle_id="M01", ending_id="E01", full_text="text")
     assert s.score is None
     assert s.issues == []
+
+
+def test_load_fragments_selects_requested_translation(tmp_path: Path) -> None:
+    path = tmp_path / "multilingual.json"
+    path.write_text(json.dumps(MULTILINGUAL_SAMPLE_DATA), encoding="utf-8")
+
+    frags = load_fragments(path, language="fr")
+
+    assert frags[LAYER_OPENING][0].text == "Ouverture française."
+
+
+def test_load_fragments_rejects_unsupported_language(tmp_path: Path) -> None:
+    path = tmp_path / "multilingual.json"
+    path.write_text(json.dumps(MULTILINGUAL_SAMPLE_DATA), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="Unsupported language 'de'"):
+        load_fragments(path, language="de")

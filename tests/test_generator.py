@@ -62,6 +62,11 @@ def test_generate_all_stories_full_text_contains_all_parts() -> None:
     assert "Ending" in s.full_text
 
 
+def test_generate_all_stories_records_language() -> None:
+    stories = generate_all_stories(_make_fragments(), language="es")
+    assert all(story.language == "es" for story in stories)
+
+
 def test_build_full_text() -> None:
     o = Fragment(id="O01", layer=LAYER_OPENING, text="A.")
     m = Fragment(id="M01", layer=LAYER_MIDDLE, text="B.")
