@@ -4,6 +4,8 @@ A combinatorial storytelling engine for a physical split-page book.
 
 Fragment Weaver generates stories by combining **one fragment from each of three narrative layers** — opening, middle, and ending. With 3 fragments per layer, the engine produces **27 unique stories**.
 
+The initial multilingual edition supports English (`en`), French (`fr`), and Spanish (`es`). Each story is generated entirely in the selected language; fragments are never mixed across languages.
+
 ---
 
 ## Project structure
@@ -51,6 +53,11 @@ python main.py markov --layer ending
 
 # Export all scored stories to JSON and Markdown
 python main.py export
+
+# Generate French or Spanish stories
+python main.py random --language fr
+python main.py score --language es
+python main.py export --language fr
 ```
 
 After `export`, check `output/stories.json` and `output/stories.md`.
@@ -66,6 +73,8 @@ After `export`, check `output/stories.json` and `output/stories.md`.
 | `score`                  | Heuristic coherence score for all stories   |
 | `markov --layer <layer>` | Generate a Markov-chain candidate text      |
 | `export`                 | Write all scored stories to JSON + Markdown |
+
+All commands accept `--language en|fr|es` (default: `en`). Language-specific exports are written as `output/stories.<language>.json` and `output/stories.<language>.md`.
 
 `markov` options:
 
@@ -144,7 +153,11 @@ To add your own fragments, edit `data/fragments.json` and follow the existing sc
 {
   "id": "O04",
   "layer": "opening",
-  "text": "Your fragment text here.",
+  "text": {
+    "en": "Your English fragment text here.",
+    "fr": "Votre fragment français ici.",
+    "es": "Tu fragmento en español aquí."
+  },
   "tags": ["optional", "keywords"]
 }
 ```

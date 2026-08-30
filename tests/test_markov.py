@@ -29,6 +29,10 @@ def test_tokenize_empty_string() -> None:
     assert tokenize("") == []
 
 
+def test_tokenize_keeps_accented_words() -> None:
+    assert tokenize("La lumière était calme") == ["la", "lumière", "était", "calme"]
+
+
 def test_build_chain_keys_are_tuples() -> None:
     chain = build_chain(["the cat sat on the mat"])
     for key in chain:
