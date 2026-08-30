@@ -25,6 +25,8 @@ from src.export import export_to_json, export_to_markdown, story_to_dict
 from src.fragments import LAYERS, all_fragments_flat, load_fragments
 from src.generator import generate_all_stories, generate_random_story
 from src.markov import generate_text, train_on_layer
+from src.dashboard import export_dashboard
+from src.quality import analyze_story
 
 DATA_PATH = Path(__file__).parent / "data" / "fragments.json"
 OUTPUT_DIR = Path(__file__).parent / "output"
@@ -110,6 +112,14 @@ def cmd_export(args: argparse.Namespace) -> None:  # noqa: ARG001
     print(f"  JSON     → {json_path}")
     print(f"  Markdown → {md_path}")
 
+def cmd_dashboard(args: argparse.Namespace) -> None:
+    fragments = load_fragments(DATA_PATH, args.language)
+    flat = all_fragments_flat(fragments)
+    stories = generate_all_stories(fragments, args.language)
+    path = OUTPUT_DIR / f"quality-dashboard.{args.language}.html"
+    export_dashboard([analyze_story(story, flat, args.language) for story in stories], args.language, path)
+    print(f"Exported quality dashboard → {path}")
+
 
 # ---------------------------------------------------------------------------
 # Argument parser
@@ -134,6 +144,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("random", "Print one random story as JSON"),
         ("score", "Score all stories for heuristic coherence"),
         ("export", "Write all scored stories to JSON and Markdown"),
+        ("dashboard", "Write an HTML quality dashboard"),
     ):
         add_language_option(sub.add_parser(name, help=help_text))
 
@@ -173,6 +184,7 @@ def main() -> None:
         "score": cmd_score,
         "markov": cmd_markov,
         "export": cmd_export,
+        "dashboard": cmd_dashboard,
     }
     dispatch[args.command](args)
 
