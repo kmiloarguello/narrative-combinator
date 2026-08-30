@@ -20,3 +20,12 @@ def analyze_story(story: Story, fragments: dict[str, Fragment], language: str) -
 def summarize(items: list[StoryQuality]) -> dict[str, object]:
     scores = [item.score for item in items]
     return {'story_count': len(items), 'average_score': round(sum(scores) / len(scores), 1) if scores else 0, 'ready_count': sum(i.review_priority == 'ready' for i in items), 'review_count': sum(i.review_priority == 'review' for i in items)}
+
+def fragment_score_stats(stories: list[Story], items: list[StoryQuality]) -> dict[str, dict[str, float]]:
+    """Average score contributed by each opening, middle, and ending fragment."""
+    scores = {item.story_id: item.score for item in items}
+    groups: dict[str, list[int]] = {}
+    for story in stories:
+        for fragment_id in (story.opening_id, story.middle_id, story.ending_id):
+            groups.setdefault(fragment_id, []).append(scores[story.id])
+    return {fragment_id: {"average_score": round(sum(values) / len(values), 1), "story_count": len(values)} for fragment_id, values in groups.items()}
