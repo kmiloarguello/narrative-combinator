@@ -16,6 +16,7 @@ def story_to_dict(story: Story) -> dict:
         "middle_id": story.middle_id,
         "ending_id": story.ending_id,
         "full_text": story.full_text,
+        "language": story.language,
     }
     if story.score is not None:
         d["score"] = story.score

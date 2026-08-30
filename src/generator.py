@@ -17,7 +17,9 @@ def build_full_text(opening: Fragment, middle: Fragment, ending: Fragment) -> st
     return f"{opening.text} {middle.text} {ending.text}"
 
 
-def generate_all_stories(fragments: dict[str, list[Fragment]]) -> list[Story]:
+def generate_all_stories(
+    fragments: dict[str, list[Fragment]], language: str = "en"
+) -> list[Story]:
     """Generate all possible story combinations (3×3×3 = 27)."""
     openings = fragments[LAYER_OPENING]
     middles = fragments[LAYER_MIDDLE]
@@ -31,6 +33,7 @@ def generate_all_stories(fragments: dict[str, list[Fragment]]) -> list[Story]:
             middle_id=m.id,
             ending_id=e.id,
             full_text=build_full_text(o, m, e),
+            language=language,
         )
         stories.append(story)
 
@@ -40,6 +43,7 @@ def generate_all_stories(fragments: dict[str, list[Fragment]]) -> list[Story]:
 def generate_random_story(
     fragments: dict[str, list[Fragment]],
     rng: random.Random | None = None,
+    language: str = "en",
 ) -> Story:
     """Pick one random opening, middle, and ending and combine them."""
     r = rng or random
@@ -62,4 +66,5 @@ def generate_random_story(
         middle_id=m.id,
         ending_id=e.id,
         full_text=build_full_text(o, m, e),
+        language=language,
     )

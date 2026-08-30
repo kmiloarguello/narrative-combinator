@@ -3,55 +3,55 @@
     {
       "id": "O01",
       "layer": "opening",
-      "text": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed.",
+      "text": {"en": "The morning arrived without ceremony, a pale light pressing through curtains that had not moved in weeks. Something in the air suggested a threshold had been crossed in the night, though nothing visible had changed.", "fr": "Le matin arriva sans cérémonie, une lumière pâle traversant des rideaux immobiles depuis des semaines. Quelque chose dans l'air suggérait qu'un seuil avait été franchi durant la nuit, bien que rien de visible n'eût changé.", "es": "La mañana llegó sin ceremonia, una luz pálida atravesando cortinas que no se habían movido en semanas. Algo en el aire sugería que un umbral se había cruzado durante la noche, aunque nada visible había cambiado."},
       "tags": ["morning", "light", "stillness", "threshold"]
     },
     {
       "id": "O02",
       "layer": "opening",
-      "text": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead.",
+      "text": {"en": "She stood at the edge of the old bridge, watching the river carry its silence downstream. The town behind her felt no closer than the horizon ahead.", "fr": "Elle se tenait au bord du vieux pont, regardant la rivière emporter son silence vers l'aval. La ville derrière elle ne semblait pas plus proche que l'horizon devant elle.", "es": "Ella estaba al borde del viejo puente, viendo al río llevar su silencio corriente abajo. El pueblo detrás de ella no parecía más cercano que el horizonte adelante."},
       "tags": ["bridge", "river", "silence", "departure"]
     },
     {
       "id": "O03",
       "layer": "opening",
-      "text": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to.",
+      "text": {"en": "There was a letter on the table when he returned, its envelope still sealed, its presence filling the room more than any object had a right to.", "fr": "Quand il revint, une lettre attendait sur la table, son enveloppe toujours scellée, sa présence remplissant la pièce plus qu'aucun objet n'aurait dû le faire.", "es": "Había una carta sobre la mesa cuando volvió, su sobre aún sellado, su presencia llenando la habitación más de lo que ningún objeto tenía derecho a hacerlo."},
       "tags": ["letter", "return", "anticipation", "interior"]
     },
     {
       "id": "M01",
       "layer": "middle",
-      "text": "The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning.",
+      "text": {"en": "The hours passed in that particular way they do when the mind refuses to be still, circling the same worn thought until it loses all meaning.", "fr": "Les heures passèrent de cette manière particulière qu'elles prennent lorsque l'esprit refuse de rester immobile, tournant autour de la même pensée usée jusqu'à ce qu'elle perde tout son sens.", "es": "Las horas pasaron de esa manera particular en que lo hacen cuando la mente se niega a quedarse quieta, girando alrededor del mismo pensamiento gastado hasta que pierde todo sentido."},
       "tags": ["time", "thought", "repetition", "interior"]
     },
     {
       "id": "M02",
       "layer": "middle",
-      "text": "A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little.",
+      "text": {"en": "A stranger appeared in the doorway—not threatening, not gentle, but carrying the particular gravity of someone who has traveled a long way to say very little.", "fr": "Un inconnu apparut dans l'embrasure — ni menaçant ni doux, mais porteur de la gravité singulière de quelqu'un qui avait fait un long voyage pour dire très peu.", "es": "Un extraño apareció en el umbral, ni amenazante ni amable, pero cargando la gravedad particular de alguien que ha viajado lejos para decir muy poco."},
       "tags": ["stranger", "arrival", "silence", "gravity"]
     },
     {
       "id": "M03",
       "layer": "middle",
-      "text": "Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known.",
+      "text": {"en": "Hidden beneath years of ordinary quiet was something that had been waiting with the patience of stone, and now, without announcement, it made itself known.", "fr": "Cachée sous des années de calme ordinaire, quelque chose attendait avec la patience de la pierre et, à présent, sans annonce, se faisait connaître.", "es": "Oculto bajo años de quietud ordinaria había algo que esperaba con la paciencia de la piedra y que ahora, sin anuncio, se daba a conocer."},
       "tags": ["revelation", "patience", "hidden", "quiet"]
     },
     {
       "id": "E01",
       "layer": "ending",
-      "text": "In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.",
+      "text": {"en": "In the end, nothing was resolved—only rearranged, like furniture shifted in a room that no longer felt like home.", "fr": "À la fin, rien ne fut résolu — seulement réorganisé, comme des meubles déplacés dans une pièce qui ne ressemblait plus à un foyer.", "es": "Al final, nada se resolvió: solo se reorganizó, como muebles movidos en una habitación que ya no se sentía como hogar."},
       "tags": ["unresolved", "change", "home", "ambiguity"]
     },
     {
       "id": "E02",
       "layer": "ending",
-      "text": "She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.",
+      "text": {"en": "She left without looking back, and in that small act of restraint, something that had been held for years finally, quietly, released.", "fr": "Elle partit sans se retourner et, dans ce petit geste de retenue, quelque chose qui avait été contenu durant des années se libéra enfin, doucement.", "es": "Ella se fue sin mirar atrás y, en ese pequeño acto de contención, algo que se había mantenido durante años por fin se liberó, silenciosamente."},
       "tags": ["departure", "release", "restraint", "quiet"]
     },
     {
       "id": "E03",
       "layer": "ending",
-      "text": "What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.",
+      "text": {"en": "What remained was not understanding, but a quieter relationship with uncertainty—the kind that allows a person to sleep at last.", "fr": "Ce qui resta ne fut pas une compréhension, mais une relation plus paisible avec l'incertitude — celle qui permet enfin de dormir.", "es": "Lo que quedó no fue comprensión, sino una relación más tranquila con la incertidumbre, de esa clase que por fin permite dormir."},
       "tags": ["uncertainty", "acceptance", "quiet", "rest"]
     }
   ]
