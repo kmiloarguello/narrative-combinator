@@ -96,6 +96,16 @@ python main.py fragment-stats --language es
 
 This shows the average score and number of combinations for each opening, middle, and ending fragment, helping you identify which source text most needs revision.
 
+## Compare language scores
+
+Compare the quality signals for the same story across English, French, and Spanish:
+
+```bash
+python main.py compare
+```
+
+The command prints JSON rows keyed by story ID, making score differences easy to inspect during translation review.
+
 `markov` options:
 
 | Flag          | Default      | Description                      |
