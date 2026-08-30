@@ -6,6 +6,8 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from .locales import get_language_rules
+
 LAYER_OPENING = "opening"
 LAYER_MIDDLE = "middle"
 LAYER_ENDING = "ending"
@@ -31,21 +33,37 @@ class Story:
     middle_id: str
     ending_id: str
     full_text: str
+    language: str = "en"
     score: int | None = None
     issues: list[str] = field(default_factory=list)
 
 
-def load_fragments(path: Path) -> dict[str, list[Fragment]]:
-    """Load fragments from a JSON file and return them keyed by layer."""
+def load_fragments(path: Path, language: str = "en") -> dict[str, list[Fragment]]:
+    """Load fragments in *language* and return them keyed by narrative layer.
+
+    Fragment text may be a legacy string or a mapping keyed by ISO 639-1 code.
+    A requested translation must exist for every fragment.
+    """
+    get_language_rules(language)
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
     fragments: dict[str, list[Fragment]] = {layer: [] for layer in LAYERS}
     for item in data["fragments"]:
+        text = item["text"]
+        if isinstance(text, dict):
+            try:
+                text = text[language]
+            except KeyError as exc:
+                raise ValueError(
+                    f"Fragment '{item['id']}' has no '{language}' translation."
+                ) from exc
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError(f"Fragment '{item['id']}' has invalid text for '{language}'.")
         frag = Fragment(
             id=item["id"],
             layer=item["layer"],
-            text=item["text"],
+            text=text,
             tags=item.get("tags", []),
         )
         if frag.layer in fragments:

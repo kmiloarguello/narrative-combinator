@@ -6,6 +6,7 @@ import re
 from dataclasses import dataclass, field
 
 from .fragments import Fragment
+from .locales import get_language_rules
 
 # ---------------------------------------------------------------------------
 # Stop-word list used when extracting keywords
@@ -75,29 +76,33 @@ class CoherenceResult:
 # ---------------------------------------------------------------------------
 
 
-def _extract_keywords(text: str) -> list[str]:
+def _extract_keywords(text: str, language: str = "en") -> list[str]:
     """Return non-stop-word tokens longer than two characters from *text*."""
-    words = re.findall(r"[a-zA-Z]+", text.lower())
-    return [w for w in words if w not in _STOP_WORDS and len(w) > 2]
+    rules = get_language_rules(language)
+    words = re.findall(r"[^\W\d_]+", text.lower(), flags=re.UNICODE)
+    return [w for w in words if w not in rules.stop_words and len(w) > 2]
 
 
-def _detect_repeated_keywords(texts: list[str], threshold: int = 2) -> list[str]:
+def _detect_repeated_keywords(
+    texts: list[str], threshold: int = 2, language: str = "en"
+) -> list[str]:
     """Return keywords that appear in *threshold* or more distinct fragments."""
     word_fragment_count: dict[str, int] = {}
     for text in texts:
-        for word in set(_extract_keywords(text)):
+        for word in set(_extract_keywords(text, language)):
             word_fragment_count[word] = word_fragment_count.get(word, 0) + 1
     return [w for w, cnt in word_fragment_count.items() if cnt >= threshold]
 
 
-def _detect_tense_mismatch(texts: list[str]) -> list[str]:
+def _detect_tense_mismatch(texts: list[str], language: str = "en") -> list[str]:
     """Return issue strings when past and future tense markers co-occur."""
     all_words: set[str] = set()
     for text in texts:
-        all_words.update(re.findall(r"[a-zA-Z]+", text.lower()))
+        all_words.update(re.findall(r"[^\W\d_]+", text.lower(), flags=re.UNICODE))
 
-    past = all_words & _PAST_INDICATORS
-    future = all_words & _FUTURE_INDICATORS
+    rules = get_language_rules(language)
+    past = all_words & rules.past_indicators
+    future = all_words & rules.future_indicators
 
     if past and future:
         past_ex = next(iter(past))
@@ -139,7 +144,7 @@ def _detect_length_imbalance(texts: list[str]) -> list[str]:
 
 
 def score_story(
-    opening: Fragment, middle: Fragment, ending: Fragment
+    opening: Fragment, middle: Fragment, ending: Fragment, language: str = "en"
 ) -> CoherenceResult:
     """Score a story for heuristic coherence, returning a :class:`CoherenceResult`.
 
@@ -154,12 +159,13 @@ def score_story(
     issues: list[str] = []
     score = 100
 
-    repeated = _detect_repeated_keywords(texts, threshold=2)
+    get_language_rules(language)
+    repeated = _detect_repeated_keywords(texts, threshold=2, language=language)
     for word in repeated:
         issues.append(f"Repeated keyword: '{word}'")
         score -= _DEDUCT_REPEATED_KEYWORD
 
-    tense_issues = _detect_tense_mismatch(texts)
+    tense_issues = _detect_tense_mismatch(texts, language=language)
     issues.extend(tense_issues)
     score -= len(tense_issues) * _DEDUCT_TENSE_MISMATCH
 

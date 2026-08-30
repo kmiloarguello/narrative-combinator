@@ -37,8 +37,8 @@ OUTPUT_DIR = Path(__file__).parent / "output"
 
 def cmd_generate(args: argparse.Namespace) -> None:  # noqa: ARG001
     """Print all 27 story combinations."""
-    fragments = load_fragments(DATA_PATH)
-    stories = generate_all_stories(fragments)
+    fragments = load_fragments(DATA_PATH, args.language)
+    stories = generate_all_stories(fragments, args.language)
     print(f"Generated {len(stories)} stories:\n")
     for story in stories:
         print(
@@ -48,19 +48,19 @@ def cmd_generate(args: argparse.Namespace) -> None:  # noqa: ARG001
 
 def cmd_random(args: argparse.Namespace) -> None:  # noqa: ARG001
     """Generate and print one random story as JSON."""
-    fragments = load_fragments(DATA_PATH)
-    story = generate_random_story(fragments)
+    fragments = load_fragments(DATA_PATH, args.language)
+    story = generate_random_story(fragments, language=args.language)
     print(json.dumps(story_to_dict(story), indent=2, ensure_ascii=False))
 
 
 def cmd_score(args: argparse.Namespace) -> None:  # noqa: ARG001
     """Score all 27 stories and print results."""
-    fragments = load_fragments(DATA_PATH)
+    fragments = load_fragments(DATA_PATH, args.language)
     flat = all_fragments_flat(fragments)
-    stories = generate_all_stories(fragments)
+    stories = generate_all_stories(fragments, args.language)
 
     for story in stories:
-        result = score_story(flat[story.opening_id], flat[story.middle_id], flat[story.ending_id])
+        result = score_story(flat[story.opening_id], flat[story.middle_id], flat[story.ending_id], args.language)
         story.score = result.score
         story.issues = result.issues
 
@@ -76,7 +76,7 @@ def cmd_markov(args: argparse.Namespace) -> None:
         print(f"Error: --layer must be one of {LAYERS}", file=sys.stderr)
         sys.exit(1)
 
-    fragments = load_fragments(DATA_PATH)
+    fragments = load_fragments(DATA_PATH, args.language)
     texts = [f.text for f in fragments[layer]]
 
     if not texts:
@@ -90,18 +90,18 @@ def cmd_markov(args: argparse.Namespace) -> None:
 
 def cmd_export(args: argparse.Namespace) -> None:  # noqa: ARG001
     """Export all scored stories to JSON and Markdown."""
-    fragments = load_fragments(DATA_PATH)
+    fragments = load_fragments(DATA_PATH, args.language)
     flat = all_fragments_flat(fragments)
-    stories = generate_all_stories(fragments)
+    stories = generate_all_stories(fragments, args.language)
 
     for story in stories:
-        result = score_story(flat[story.opening_id], flat[story.middle_id], flat[story.ending_id])
+        result = score_story(flat[story.opening_id], flat[story.middle_id], flat[story.ending_id], args.language)
         story.score = result.score
         story.issues = result.issues
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    json_path = OUTPUT_DIR / "stories.json"
-    md_path = OUTPUT_DIR / "stories.md"
+    json_path = OUTPUT_DIR / f"stories.{args.language}.json"
+    md_path = OUTPUT_DIR / f"stories.{args.language}.md"
 
     export_to_json(stories, json_path)
     export_to_markdown(stories, md_path)
@@ -123,9 +123,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
-    sub.add_parser("generate", help="List all 27 story combinations")
-    sub.add_parser("random", help="Print one random story as JSON")
-    sub.add_parser("score", help="Score all stories for heuristic coherence")
+    def add_language_option(command: argparse.ArgumentParser) -> None:
+        command.add_argument(
+            "--language", choices=("en", "fr", "es"), default="en",
+            help="Story language (default: en)",
+        )
+
+    for name, help_text in (
+        ("generate", "List all story combinations"),
+        ("random", "Print one random story as JSON"),
+        ("score", "Score all stories for heuristic coherence"),
+        ("export", "Write all scored stories to JSON and Markdown"),
+    ):
+        add_language_option(sub.add_parser(name, help=help_text))
 
     markov_p = sub.add_parser(
         "markov", help="Generate a Markov-chain candidate fragment"
@@ -143,8 +153,7 @@ def build_parser() -> argparse.ArgumentParser:
         dest="max_words",
         help="Maximum words to generate (default: 30)",
     )
-
-    sub.add_parser("export", help="Export all stories to JSON and Markdown")
+    add_language_option(markov_p)
 
     return parser
 

@@ -9,7 +9,7 @@ from collections import defaultdict
 
 def tokenize(text: str) -> list[str]:
     """Split text into lowercase word tokens, stripping punctuation."""
-    words = re.findall(r"[a-zA-Z']+", text.lower())
+    words = re.findall(r"[^\W\d_]+(?:'[^\W\d_]+)?", text.lower(), flags=re.UNICODE)
     # Strip surrounding apostrophes (keep inner ones for contractions)
     return [w.strip("'") for w in words if w.strip("'")]
 
