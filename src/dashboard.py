@@ -21,6 +21,17 @@ def render_score_bars(items: list[StoryQuality]) -> str:
     return "".join(f"<div class='bar'><label>{item.story_id}</label><i style='width:{item.score}%'></i><b>{item.score}</b></div>" for item in items)
 
 
+def render_histogram(items: list[StoryQuality]) -> str:
+    buckets = {"<80": 0, "80–89": 0, "90–99": 0, "100": 0}
+    for item in items:
+        buckets["<80" if item.score < 80 else "80–89" if item.score < 90 else "90–99" if item.score < 100 else "100"] += 1
+    return "".join(f"<div class='bar'><label>{band}</label><i style='width:{count * 28}px'></i><b>{count}</b></div>" for band, count in buckets.items())
+
+
+def render_length_distribution(items: list[StoryQuality]) -> str:
+    return "".join(f"<div class='bar'><label>{item.story_id}</label><i class='{'in-target' if 70 <= item.word_count <= 90 else 'out-target'}' style='width:{item.word_count * 2}px'></i><b>{item.word_count}</b></div>" for item in items)
+
+
 def render_heatmap(items: list[StoryQuality]) -> str:
     """Render rows as openings and columns as middle/ending combinations."""
     columns = "".join(f"<th>M{middle}/E{ending}</th>" for middle in range(1, 4) for ending in range(1, 4))
@@ -50,6 +61,6 @@ def render_keyword_chart(items: list[StoryQuality]) -> str:
 def export_dashboard(items: list[StoryQuality], language: str, path: Path) -> None:
     payload = dashboard_payload(items, language)
     summary = render_summary_cards(payload["summary"])  # type: ignore[arg-type]
-    html = f"""<!doctype html><html lang='{escape(language)}'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Story quality dashboard</title><style>:root{{color-scheme:light}}body{{font:16px system-ui;margin:0;background:#f7f5f0;color:#17202a}}main{{max-width:1200px;margin:auto;padding:32px}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}}article,section{{background:#fff;border-radius:10px;padding:18px;margin:16px 0}}strong{{display:block;font-size:28px}}small{{color:#587}}.bar{{display:flex;gap:8px;align-items:center;margin:6px 0}}label{{width:70px}}i{{height:15px;background:#357266;border-radius:3px}}table{{width:100%;border-collapse:collapse}}th,td{{padding:8px;border-bottom:1px solid #ddd;text-align:left}}.good{{background:#cce8d5}}.warn{{background:#ffe7a3}}.poor{{background:#f7b7ad}}@media(max-width:700px){{main{{padding:16px}}table{{font-size:12px}}}}</style><main><header><h1>Story quality dashboard</h1><p>Language: <b>{escape(language)}</b>. Automated signals prioritize editorial review; they do not replace it.</p></header><div class='cards'>{summary}</div><section><h2>Combination heatmap</h2><p>Rows are openings; columns pair each middle and ending. Green: 90+, amber: 80–89, red: below 80.</p>{render_heatmap(items)}</section><section><h2>Coherence score by story</h2>{render_score_bars(items)}</section><section><h2>Repeated keyword frequency</h2>{render_keyword_chart(items)}</section><section><h2>Review queue</h2>{render_review_table(items)}</section></main></html>"""
+    html = f"""<!doctype html><html lang='{escape(language)}'><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Story quality dashboard</title><style>:root{{color-scheme:light}}body{{font:16px system-ui;margin:0;background:#f7f5f0;color:#17202a}}main{{max-width:1200px;margin:auto;padding:32px}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}}article,section{{background:#fff;border-radius:10px;padding:18px;margin:16px 0}}strong{{display:block;font-size:28px}}small{{color:#587}}.bar{{display:flex;gap:8px;align-items:center;margin:6px 0}}label{{width:70px}}i{{height:15px;background:#357266;border-radius:3px}}.out-target{{background:#e9a23b}}table{{width:100%;border-collapse:collapse}}th,td{{padding:8px;border-bottom:1px solid #ddd;text-align:left}}.good{{background:#cce8d5}}.warn{{background:#ffe7a3}}.poor{{background:#f7b7ad}}@media(max-width:700px){{main{{padding:16px}}table{{font-size:12px}}}}</style><main><header><h1>Story quality dashboard</h1><p>Language: <b>{escape(language)}</b>. Automated signals prioritize editorial review; they do not replace it.</p></header><div class='cards'>{summary}</div><section><h2>Combination heatmap</h2><p>Rows are openings; columns pair each middle and ending. Green: 90+, amber: 80–89, red: below 80.</p>{render_heatmap(items)}</section><section><h2>Score distribution</h2>{render_histogram(items)}</section><section><h2>Page-length distribution</h2><p>Green is within the 70–90 word target; amber needs layout review.</p>{render_length_distribution(items)}</section><section><h2>Coherence score by story</h2>{render_score_bars(items)}</section><section><h2>Repeated keyword frequency</h2>{render_keyword_chart(items)}</section><section><h2>Review queue</h2>{render_review_table(items)}</section></main></html>"""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(html, encoding="utf-8")
