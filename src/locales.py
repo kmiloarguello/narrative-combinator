@@ -30,9 +30,9 @@ LANGUAGE_RULES: dict[str, LanguageRules] = {
     ),
     "es": LanguageRules(
         name="Spanish",
-        stop_words=frozenset({"el", "la", "los", "las", "un", "una", "unos", "unas", "y", "o", "pero", "en", "sobre", "a", "de", "del", "es", "era", "ser", "con", "para", "por", "este", "esta", "él", "ella", "ellos", "nosotros", "vosotros", "yo", "que", "quien", "si", "como"}),
+        stop_words=frozenset({"el", "la", "los", "las", "un", "una", "unos", "unas", "y", "o", "pero", "en", "sobre", "a", "de", "del", "es", "era", "ser", "con", "para", "por", "este", "esta", "él", "ella", "ellos", "nosotros", "vosotros", "yo", "que", "quien", "si", "como", "había", "algo", "sin", "más", "esa", "cuando", "durante", "nada"}),
         past_indicators=frozenset({"ayer", "había", "era", "eran", "antes", "una", "vez", "pasado"}),
-        future_indicators=frozenset({"mañana", "será", "serán", "pronto", "algún", "día", "próximo"}),
+        future_indicators=frozenset({"será", "serán", "pronto", "próximo"}),
     ),
 }
 

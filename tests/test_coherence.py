@@ -80,6 +80,20 @@ def test_detect_tense_mismatch_in_french() -> None:
     assert len(issues) == 1
 
 
+def test_spanish_morning_is_not_treated_as_future() -> None:
+    issues = _detect_tense_mismatch(
+        ["La mañana llegó sin ceremonia.", "Había silencio."], language="es"
+    )
+    assert issues == []
+
+
+def test_spanish_future_marker_is_detected() -> None:
+    issues = _detect_tense_mismatch(
+        ["Ayer ella estaba aquí.", "Pronto será diferente."], language="es"
+    )
+    assert len(issues) == 1
+
+
 # ---------------------------------------------------------------------------
 # _detect_incompatible_keywords
 # ---------------------------------------------------------------------------
