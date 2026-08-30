@@ -58,6 +58,7 @@ python main.py export
 python main.py random --language fr
 python main.py score --language es
 python main.py export --language fr
+python main.py dashboard --language es
 ```
 
 After `export`, check `output/stories.json` and `output/stories.md`.
@@ -75,6 +76,17 @@ After `export`, check `output/stories.json` and `output/stories.md`.
 | `export`                 | Write all scored stories to JSON + Markdown |
 
 All commands accept `--language en|fr|es` (default: `en`). Language-specific exports are written as `output/stories.<language>.json` and `output/stories.<language>.md`.
+
+## Quality dashboard
+
+Create a self-contained HTML report for editorial review:
+
+```bash
+python main.py dashboard --language en
+open output/quality-dashboard.en.html
+```
+
+The dashboard shows the score, word and sentence counts, repeated keywords, and a `ready`/`review` recommendation for all 27 combinations. Use it to prioritize human editorial review; it does not replace literary judgment.
 
 `markov` options:
 
