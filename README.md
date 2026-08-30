@@ -1,5 +1,8 @@
 # Fragment Weaver
 
+[![Tests](https://github.com/kmiloarguello/narrative-combinator/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/kmiloarguello/narrative-combinator/actions/workflows/tests.yml)
+[![Dashboard preview](https://github.com/kmiloarguello/narrative-combinator/actions/workflows/dashboard-preview.yml/badge.svg)](https://github.com/kmiloarguello/narrative-combinator/actions/workflows/dashboard-preview.yml)
+
 A combinatorial storytelling engine for a physical split-page book.
 
 Fragment Weaver generates stories by combining **one fragment from each of three narrative layers** — opening, middle, and ending. With 3 fragments per layer, the engine produces **27 unique stories**.
