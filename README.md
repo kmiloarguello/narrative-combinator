@@ -88,6 +88,14 @@ open output/quality-dashboard.en.html
 
 The dashboard shows the score, word and sentence counts, repeated keywords, and a `ready`/`review` recommendation for all 27 combinations. Use it to prioritize human editorial review; it does not replace literary judgment.
 
+## Fragment quality statistics
+
+```bash
+python main.py fragment-stats --language es
+```
+
+This shows the average score and number of combinations for each opening, middle, and ending fragment, helping you identify which source text most needs revision.
+
 `markov` options:
 
 | Flag          | Default      | Description                      |
